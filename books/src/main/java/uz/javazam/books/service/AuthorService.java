@@ -2,10 +2,28 @@ package uz.javazam.books.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.javazam.books.model.Author;
 import uz.javazam.books.repository.AuthorRepository;
+
+import java.util.List;
 
 @Service
 public class AuthorService {
-    @Autowired
-    AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
+
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
+    public List<Author> getAllAuthors(){
+        return authorRepository.findAll();
+    }
+
+    public Author getAuthorById(int id){
+        return authorRepository.findById(id);
+    }
+    public String addAuthor(Author author){
+        int rows = authorRepository.save(author);
+        return rows > 0 ? "Author added successfully!" : "Failed to add author!";
+    }
 }

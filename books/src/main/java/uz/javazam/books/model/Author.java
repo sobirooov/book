@@ -1,5 +1,10 @@
 package uz.javazam.books.model;
 
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+
 public class Author {
     private long id;
     private String fullName;
