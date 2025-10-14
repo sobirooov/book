@@ -10,9 +10,9 @@ import uz.javazam.books.service.BookService;
 @RestController
 @RequestMapping("api/v1")
 public class BookController {
+    @Autowired
     private BookService bookService;
 
-    @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }

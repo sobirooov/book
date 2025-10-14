@@ -1,5 +1,6 @@
 package uz.javazam.books.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import uz.javazam.books.model.Author;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class AuthorRepository {
-
+    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     public AuthorRepository(JdbcTemplate jdbcTemplate) {
@@ -42,6 +43,11 @@ public class AuthorRepository {
     public int save(Author author) {
         String sql = "INSERT INTO authors(full_name, country, birth_year) VALUES (?, ?, ?)";
         return jdbcTemplate.update(sql, author.getFullName(), author.getCountry(), author.getBirthYear());
+    }
+
+    public int deleteById(Long id) {
+        String sql = "DELETE FROM authors WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
     }
 
 }

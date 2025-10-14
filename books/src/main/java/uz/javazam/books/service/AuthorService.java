@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class AuthorService {
+    @Autowired
     private final AuthorRepository authorRepository;
 
     public AuthorService(AuthorRepository authorRepository) {
@@ -25,5 +26,9 @@ public class AuthorService {
     public String addAuthor(Author author){
         int rows = authorRepository.save(author);
         return rows > 0 ? "Author added successfully!" : "Failed to add author!";
+    }
+    public String deleteAuthor(Long id){
+        int rows = authorRepository.deleteById(id);
+        return rows > 0 ? "Author deleted successfully!" : "Author not found!";
     }
 }

@@ -1,5 +1,6 @@
 package uz.javazam.books.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -12,9 +13,10 @@ import java.sql.SQLException;
 
 @Repository
 public class BookRepository  {
+    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
-    private BookRepository(JdbcTemplate jdbcTemplate) {
+    public BookRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
