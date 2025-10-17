@@ -17,7 +17,7 @@ public class AuthorRepository {
     }
 
     public List<Author> findAll() {
-        String sql = "SELECT * FROM authors";
+        String sql = "SELECT * FROM book.authors";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Author author = new Author();
             author.setId(rs.getLong("id"));
@@ -28,8 +28,8 @@ public class AuthorRepository {
         });
     }
 
-    public Author findById(int id) {
-        String sql = "SELECT * FROM authors WHERE id = ?";
+    public Author findById(Long id) {
+        String sql = "SELECT * FROM book.authors WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             Author author = new Author();
             author.setId(rs.getLong("id"));
@@ -41,13 +41,17 @@ public class AuthorRepository {
     }
 
     public int save(Author author) {
-        String sql = "INSERT INTO authors(full_name, country, birth_year) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO book.authors(full_name, country, birth_year) VALUES (?, ?, ?)";
         return jdbcTemplate.update(sql, author.getFullName(), author.getCountry(), author.getBirthYear());
     }
 
     public int deleteById(Long id) {
-        String sql = "DELETE FROM authors WHERE id = ?";
+        String sql = "DELETE FROM book.authors WHERE id = ?";
         return jdbcTemplate.update(sql, id);
+    }
+    public int update(Long id, Author author) {
+        String sql = "UPDATE book.authors SET full_name = ?, country = ?, birth_year = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, author.getFullName(), author.getCountry(), author.getBirthYear(), id);
     }
 
 }

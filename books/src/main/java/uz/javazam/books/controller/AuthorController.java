@@ -9,7 +9,8 @@ import java.util.List;
 
 
 @RestController
-public class AuthorController{
+@RequestMapping("/authors")
+public class AuthorController {
 
     @Autowired
     private AuthorService authorService;
@@ -19,22 +20,27 @@ public class AuthorController{
     }
 
     @GetMapping
-    public List<Author> getAllAuthors(){
+    public List<Author> getAllAuthors() {
         return authorService.getAllAuthors();
     }
 
     @GetMapping("/{id}")
-    public Author getAuthorById(@PathVariable int id){
+    public Author getAuthorById(@PathVariable Long id) {
         return authorService.getAuthorById(id);
     }
 
     @PostMapping
-    public String addAuthor(@RequestBody Author author){
+    public String addAuthor(@RequestBody Author author) {
         return authorService.addAuthor(author);
     }
 
-    @DeleteMapping
-    public String deleteAuthorById(@PathVariable Long id){
+    @DeleteMapping("/delete/{id}")
+    public String deleteAuthorById(@PathVariable Long id) {
         return authorService.deleteAuthor(id);
+    }
+
+    @PutMapping("/{id}")
+    public Author updateAuthor(@PathVariable Long id, @RequestBody Author updatedAuthor) {
+        return authorService.updateAuthor(id, updatedAuthor);
     }
 }

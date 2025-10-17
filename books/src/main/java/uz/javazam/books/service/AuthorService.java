@@ -20,7 +20,7 @@ public class AuthorService {
         return authorRepository.findAll();
     }
 
-    public Author getAuthorById(int id){
+    public Author getAuthorById(Long id){
         return authorRepository.findById(id);
     }
     public String addAuthor(Author author){
@@ -30,5 +30,14 @@ public class AuthorService {
     public String deleteAuthor(Long id){
         int rows = authorRepository.deleteById(id);
         return rows > 0 ? "Author deleted successfully!" : "Author not found!";
+    }
+    public Author updateAuthor(Long id, Author updatedAuthor) {
+        Author existingAuthor = authorRepository.findById(id);
+        if (existingAuthor == null) {
+            throw new RuntimeException("Author not found with id: " + id);
+        }
+
+        authorRepository.update(id, updatedAuthor);
+        return authorRepository.findById(id);
     }
 }
