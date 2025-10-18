@@ -1,16 +1,16 @@
 package uz.javazam.books.model;
 
 public class Book {
-    private Integer id;
+    private Long id;
     private String title;
     private String genre;
     private Integer year;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
