@@ -1,6 +1,8 @@
 package uz.javazam.books.service;
 
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,18 +27,13 @@ public class BookService {
     public Book getBookById(Long id) {
         return bookRepository.findById(id);
     }
-    public String addBook(Book book) {
-        int result = bookRepository.save(book);
-        if (result > 0) {
-            return "Book successfully added!";
-        } else {
-            return "Failed to add book!";
-        }
+
+    public int addBook(Book book) {
+        return bookRepository.save(book);
     }
 
-    public String deleteBook(Long id) {
-        int rows = bookRepository.deleteById(id);
-        return rows > 0 ? "Book deleted successfully!" : "Failed to delete book";
+    public int deleteBook(Long id) {
+        return bookRepository.deleteById(id);
     }
 
 

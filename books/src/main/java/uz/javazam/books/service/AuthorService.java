@@ -1,6 +1,7 @@
 package uz.javazam.books.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.javazam.books.model.Author;
 import uz.javazam.books.repository.AuthorRepository;
@@ -23,13 +24,11 @@ public class AuthorService {
     public Author getAuthorById(Long id){
         return authorRepository.findById(id);
     }
-    public String addAuthor(Author author){
-        int rows = authorRepository.save(author);
-        return rows > 0 ? "Author added successfully!" : "Failed to add author!";
+    public int addAuthor(Author author){
+        return authorRepository.save(author);
     }
-    public String deleteAuthor(Long id){
-        int rows = authorRepository.deleteById(id);
-        return rows > 0 ? "Author deleted successfully!" : "Author not found!";
+    public int deleteAuthor(Long id){
+        return authorRepository.deleteById(id);
     }
     public Author updateAuthor(Long id, Author updatedAuthor) {
         Author existingAuthor = authorRepository.findById(id);
