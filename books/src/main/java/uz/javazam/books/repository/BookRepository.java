@@ -52,4 +52,10 @@ public class BookRepository  {
         String sql = "UPDATE book.books SET title = ?, genre = ?, year = ? WHERE id = ?";
         return jdbcTemplate.update(sql, book.getTitle(), book.getGenre(), book.getYear(), id);
     }
+
+    public void addBookAuthorMapping(Long bookId, Long authorId) {
+        String sql = "INSERT INTO book.book_author_mapping (book_id, author_id) VALUES (?, ?)";
+        jdbcTemplate.update(sql, bookId, authorId);
+    }
+
 }

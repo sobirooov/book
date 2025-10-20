@@ -54,4 +54,20 @@ public class AuthorRepository {
         return jdbcTemplate.update(sql, author.getFullName(), author.getCountry(), author.getBirthYear(), id);
     }
 
+    public List<Author> getAuthorByBookId(Long id) {
+        String sql = "SELECT a.id, a.full_name, a.country, a.birth_year\n" +
+                "FROM book.authors a\n" +
+                "JOIN book.book_author_mapping m ON a.id = m.author_id\n" +
+                "JOIN book.books b ON b.id = m.book_id\n" +
+                "WHERE b.id = ?";
+        return jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) -> {
+            Author author = new Author();
+            author.setId(rs.getLong("id"));
+            author.setFullName(rs.getString("full_name"));
+            author.setCountry(rs.getString("country"));
+            author.setBirthYear(rs.getInt("birth_year"));
+            return author;
+        });
+    }
+
 }

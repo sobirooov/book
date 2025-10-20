@@ -2,6 +2,7 @@ package uz.javazam.books.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.javazam.books.model.Author;
 import uz.javazam.books.model.Book;
 import uz.javazam.books.repository.BookRepository;
 
@@ -10,18 +11,26 @@ import java.util.List;
 @Service
 public class BookService {
     @Autowired
-    private final BookRepository bookRepository;
+    private BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    @Autowired
+    private AuthorService authorService;
+
 
     public List<Book> getAllBooks(){
-        return bookRepository.findAll();
+        List<Book> books = bookRepository.findAll();
+        for(Book book : books){
+            fillAuthors(book);
+        }
+        return books;
     }
 
     public Book getBookById(Long id) {
-        return bookRepository.findById(id);
+        Book result = bookRepository.findById(id);
+        if (result != null) {
+            fillAuthors(result);
+        }
+        return result;
     }
 
     public int addBook(Book book) {
@@ -41,6 +50,11 @@ public class BookService {
 
         bookRepository.update(id, updatedBook);
         return bookRepository.findById(id);
+    }
+
+    private void fillAuthors(Book book) {
+       List<Author> authors = authorService.getAuthorsByBookId(book.getId());
+       book.setAuthors(authors);
     }
 
 }
