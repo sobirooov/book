@@ -1,7 +1,6 @@
 package uz.javazam.books.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.javazam.books.model.Author;
 import uz.javazam.books.repository.AuthorRepository;

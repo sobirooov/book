@@ -1,11 +1,7 @@
 package uz.javazam.books.service;
 
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import uz.javazam.books.model.Book;
 import uz.javazam.books.repository.BookRepository;
 
