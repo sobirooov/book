@@ -3,9 +3,8 @@
 Bu loyiha Java yordamida yozilgan oddiy CRUD dasturdir.
 
 ## Ishlatish
-1. `git clone ...`
-2. `mvn clean install`
-3. `java -jar target/app.jar`
+
+http://javazam.uz:8082/swagger-ui/index.html
 
 ## Muallif
 Azamjon Sobirov
