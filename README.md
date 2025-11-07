@@ -1,6 +1,7 @@
 # BookInfoREST
 
-Bu loyiha Java yordamida yozilgan oddiy CRUD dasturdir.
+Implemented a Restful web service using Spring Boot, SQL 
+Store many-to-many Book and Author relationship in PostgreSQL database
 
 ## Ishlatish
 
