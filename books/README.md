@@ -9,3 +9,5 @@ Bu loyiha Java yordamida yozilgan oddiy CRUD dasturdir.
 
 ## Muallif
 Azamjon Sobirov
+
+![swagger_ui](image/swagger_screenshot.png)
